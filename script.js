@@ -201,7 +201,7 @@ function showMovies(movies) {
     main.innerHTML = ''
     movies.forEach(movie => {
         // Object destructuring
-        const {title, poster_path, vote_average, overview} = movie
+        const {title, poster_path, vote_average, overview, id} = movie
         const movieElement = document.createElement('div')
         movieElement.classList.add('movie')
         movieElement.innerHTML = `<img
@@ -214,10 +214,17 @@ function showMovies(movies) {
       </div>
       <div class="overview">
         <h3>Overview</h3>
-        ${overview}
+        ${overview.length > 500 ? overview.slice(0,500) + '....': overview }
+        <br/>
+        <button class="knowMore" id="${id}">Know More</button>
       </div>`
 
       main.appendChild(movieElement)
+
+      document.getElementById(id).addEventListener('click', () => {
+        console.log(movie)
+        openNav(movie)
+      })
     })
 }
 
@@ -276,5 +283,115 @@ next.addEventListener('click', () => {
         pageCall(nextPage)
     }
 })
+
+const overlayContent = document.getElementById('overlay-content')
+/* Open when someone clicks on the span element */
+function openNav(movie) {
+  let id = movie.id
+  fetch(BASE_URL+'/movie/'+id+'/videos?'+API_KEY)
+    .then(response => response.json())
+    .then(videoData => {
+      if (videoData) {
+        document.getElementById("myNav").style.width = "100%";
+        if(videoData.results.length > 0) {
+          var embed = []
+          var dots = []
+          videoData.results.forEach((video, index) => {
+            let {key, name, site} = video
+            if (site == 'YouTube') {
+              embed.push(`
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" 
+                title="${name}" class="embed hide" frameborder="0" allow="accelerometer; 
+                autoplay; clipboard-write; encrypted-media; gyroscope; 
+                picture-in-picture" allowfullscreen></iframe>
+            `)
+
+              dots.push(`
+                <span class="dot">${index + 1}</span>
+               `)
+            }
+          })
+          var content = `
+          <h2 class="title">${movie.original_title}</h2>
+          <br/>
+          ${embed.join('')}
+          <br/>
+          <div class="dots">${dots.join('')}</div>
+          `
+
+          overlayContent.innerHTML = content
+          activeSlide = 0
+          showVideos()
+
+        } else {
+          leftArrow.classList.add('hide')
+          rightArrow.classList.add('hide')
+          overlayContent.innerHTML = `<h2 class="noResults">No results found</h2>`
+        }
+      }
+    })
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
+var activeSlide = 0
+var totalVideos = 0
+function showVideos() {
+  let embedClasses = document.querySelectorAll('.embed')
+  let dots = document.querySelectorAll('.dot')
+  totalVideos = embedClasses.length
+  embedClasses.forEach((embedTag, index) => {
+    if (activeSlide == index) {
+      embedTag.classList.add('show')
+      embedTag.classList.remove('hide')
+    } else {
+      embedTag.classList.add('hide')
+      embedTag.classList.remove('show')
+    }
+  })
+
+  dots.forEach((dot, index) => {
+    if (activeSlide == index) {
+      dot.classList.add('active')
+    } else {
+      dot.classList.remove('active')
+    }
+  })
+}
+
+const leftArrow = document.getElementById('left-arrow')
+const rightArrow = document.getElementById('right-arrow')
+
+leftArrow.addEventListener('click', () => {
+  if (activeSlide > 0) {
+    activeSlide -= 1
+  } else {
+    activeSlide = totalVideos - 1
+  }
+  showVideos()
+})
+
+rightArrow.addEventListener('click', () => {
+  if (activeSlide < totalVideos - 1) {
+    activeSlide += 1
+  } else {
+    activeSlide = 0
+  }
+  showVideos()
+})
+
+const themeBtn = document.getElementById('themeButton')
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light-theme')
+  if (document.body.classList.contains('light-theme')) {
+    themeBtn.src = "dark.png"
+  } else {
+    themeBtn.src = "light.png"
+  }
+})
+
 
 getMovies(API_URL)

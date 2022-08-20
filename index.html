@@ -10,11 +10,32 @@
   </head>
   <body>
     <header>
+      <img id="themeButton" src="light.png" alt="lightModeToggleImage" />
       <form id="form">
         <input type="text" id="search" class="search" placeholder="search" />
       </form>
     </header>
     <div id="tags"></div>
+
+    <!-- Source W3Schools -->
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+
+      <!-- Overlay content -->
+      <div class="overlay-content" id="overlay-content"></div>
+
+      <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow"
+        >&#10232;</a
+      >
+      <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow"
+        >&#10233;</a
+      >
+    </div>
+
     <main id="main"></main>
     <div class="pagination">
       <div class="page" id="prev">Previous page</div>
