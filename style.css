@@ -11,6 +11,8 @@
     --card-color: #118ab2;
     --tag-color: #ffc300;
     --tag-text-color: black;
+    --box-shadow: rgb(43, 43, 43);
+    --filter: invert(1);
 }
 
 .light-theme {
@@ -19,7 +21,9 @@
     --text-color: rgb(0, 0, 0);
     --card-color: var(--secondary-color);
     --tag-color: #3d3e3e;
-    --tag-text-color: white;  
+    --tag-text-color: white;
+    --box-shadow: rgb(75, 75, 75); 
+    --filter: invert(0);
 }
 
 body {
@@ -74,10 +78,10 @@ main {
 }
 
 .movie {
-    width: 300px;
+    width: 260px;
     margin: 1rem;
-    border-radius: 3px;
-    box-shadow: var(--primary-color) 0px 4px 12px;
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: var(--box-shadow) 0px 4px 8px;
     background-color: var(--card-color);
     position: relative;
     overflow: hidden;
@@ -128,6 +132,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
+    border-radius: 30px 30px 0 0;
     background-color: white;
     padding: 1rem;
     max-height: 100%;
@@ -179,7 +184,11 @@ main {
     align-items: center;
     justify-content: center;
     color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 900;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 
 .page {
     padding: 20px;
@@ -252,7 +261,7 @@ main {
   /* Position the close button (top right corner) */
   .overlay .closebtn {
     position: absolute;
-    top: 20px;
+    top: 10%;
     right: 45px;
     font-size: 60px;
   }
@@ -281,12 +290,12 @@ main {
 
   .arrow.left-arrow {
     left: 10%;
-    top: 45%;
+    top: 50%;
   }
 
   .arrow.right-arrow {
     right: 10%;
-    top: 45%;
+    top: 50%;
   }
 
   .arrow.left-arrow.hide {
@@ -324,6 +333,15 @@ main {
     cursor: pointer;
   }
 
-  #breakLine {
+  .breakLine {
     top: 0;
+  }
+
+  
+  #goTop {
+    margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    filter: var(--filter);
   }

@@ -190,7 +190,7 @@ function getMovies(url) {
 
                 // tagsDiv.scrollIntoView({behavior: 'smooth'})
                 // document.querySelector('header').scrollIntoView({behavior: 'smooth'})
-                document.querySelector('#breakLine').scrollIntoView({behavior: 'smooth'})
+                document.querySelector('.breakLine').scrollIntoView({behavior: 'smooth'})
 z
             } else {
                 main.innerHTML = `<h2 class="noResults">No results found</h2>`
@@ -216,7 +216,7 @@ function showMovies(movies) {
       </div>
       <div class="overview">
         <h3>Overview</h3>
-        ${overview.length > 500 ? overview.slice(0,500) + '....': overview }
+        ${overview.length > 400 ? overview.slice(0,400) + '....': overview }
         <br/>
         <button class="knowMore" id="${id}">Know More</button>
       </div>`
@@ -394,6 +394,13 @@ themeBtn.addEventListener('click', () => {
     themeBtn.src = "light.png"
   }
 })
+
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 
 
 getMovies(API_URL)

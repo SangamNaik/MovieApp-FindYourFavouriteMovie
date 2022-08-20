@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
   </head>
   <body>
-    <div id="breakLine"></div>
+    <div class="breakLine"></div>
     <header>
       <img id="themeButton" src="light.png" alt="lightModeToggleImage" />
       <h1 id="heading">Movie App</h1>
@@ -19,11 +19,11 @@
     </header>
 
     <div id="tags"></div>
-
     <!-- Source W3Schools -->
     <!-- The overlay -->
     <div id="myNav" class="overlay">
       <!-- Button to close the overlay navigation -->
+
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
         >&times;</a
       >
@@ -44,6 +44,7 @@
       <div class="page" id="prev">Previous page</div>
       <div class="current" id="current">1</div>
       <div class="page" id="next">Next page</div>
+      <img src="top.png" alt="goTopButton" id="goTop" onclick="topFunction()" />
     </div>
 
     <script src="script.js"></script>
