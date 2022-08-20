@@ -1,5 +1,4 @@
-# Netflix-Clone
-
+# Movie App using The Movie Database(TMDB API)
 
 
 
