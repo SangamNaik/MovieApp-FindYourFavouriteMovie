@@ -188,8 +188,10 @@ function getMovies(url) {
                     next.classList.remove('disabled')
                 }
 
-                tagsDiv.scrollIntoView({behavior: 'smooth'})
-
+                // tagsDiv.scrollIntoView({behavior: 'smooth'})
+                // document.querySelector('header').scrollIntoView({behavior: 'smooth'})
+                document.querySelector('#breakLine').scrollIntoView({behavior: 'smooth'})
+z
             } else {
                 main.innerHTML = `<h2 class="noResults">No results found</h2>`
                 document.querySelector('.pagination').innerHTML = ''
