@@ -191,7 +191,6 @@ function getMovies(url) {
                 // tagsDiv.scrollIntoView({behavior: 'smooth'})
                 // document.querySelector('header').scrollIntoView({behavior: 'smooth'})
                 document.querySelector('.breakLine').scrollIntoView({behavior: 'smooth'})
-z
             } else {
                 main.innerHTML = `<h2 class="noResults">No results found</h2>`
                 document.querySelector('.pagination').innerHTML = ''
@@ -212,7 +211,7 @@ function showMovies(movies) {
       />
       <div class="movieInfo">
         <h3>${title}</h3>
-        <span class=${getColor(vote_average)}>${vote_average}</span>
+        <span class="${getColor(vote_average)}">${vote_average}</span>
       </div>
       <div class="overview">
         <h3>Overview</h3>
@@ -224,7 +223,6 @@ function showMovies(movies) {
       main.appendChild(movieElement)
 
       document.getElementById(id).addEventListener('click', () => {
-        console.log(movie)
         openNav(movie)
       })
     })
@@ -302,7 +300,7 @@ function openNav(movie) {
             let {key, name, site} = video
             if (site == 'YouTube') {
               embed.push(`
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" 
+                <iframe width="800" height="400" src="https://www.youtube.com/embed/${key}" 
                 title="${name}" class="embed hide" frameborder="0" allow="accelerometer; 
                 autoplay; clipboard-write; encrypted-media; gyroscope; 
                 picture-in-picture" allowfullscreen></iframe>
@@ -337,6 +335,14 @@ function openNav(movie) {
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
+  let videos = document.querySelectorAll('.embed')
+  stopYouTubeVideo(videos)
+}
+
+function stopYouTubeVideo(videos) {
+  videos.forEach(video => {
+    video.src = ''
+  })
 }
 
 var activeSlide = 0

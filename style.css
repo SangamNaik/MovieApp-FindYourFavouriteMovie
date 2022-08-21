@@ -106,9 +106,11 @@ main {
 }
 
 .movieInfo span {
+    width: 2.6rem;
     background-color: var(--primary-color);
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
+    padding: 6px;
+    text-align: center;
+    border-radius: 10px;
     font-weight: bolder;
 }
 
@@ -290,12 +292,12 @@ main {
 
   .arrow.left-arrow {
     left: 10%;
-    top: 50%;
+    top: 45%;
   }
 
   .arrow.right-arrow {
     right: 10%;
-    top: 50%;
+    top: 45%;
   }
 
   .arrow.left-arrow.hide {
@@ -370,12 +372,12 @@ main {
 
       .tag {
         font-size: 0.6rem;
-        padding: 5px 10px;
+        padding: 3px 10px;
     }
 
       .movie {
-        width: 90px;
-        height: 170px;
+        width: 100px;
+        height: 190px;
         margin: 0.8rem;
         border-radius: 15px 15px 5px 5px;
         box-shadow: var(--box-shadow) 0px 2px 4px;
@@ -395,11 +397,13 @@ main {
       }
   
       .movieInfo span {
-          width: 15px;
-          margin-top: 0;
-          font-size: 0.4rem;
-          padding: 0.1rem 0.2rem;
-          border-radius: 1px;
+          width: 1rem;
+          font-size: 0.3rem;
+          background-color: var(--primary-color);
+          padding: 2px;
+          text-align: center;
+          border-radius: 10px;
+          font-weight: bolder;
       }
   
   
@@ -410,10 +414,10 @@ main {
       }
 
       .knowMore {
-        padding: 3px 6px;
-        border-radius: 20px;
-        margin-top: 2px;
-        font-size: 4px;
+          padding: 3px 6px;
+          border-radius: 20px;
+          margin-top: 2px;
+          font-size: 4px;
       }
       
       .noResults {
@@ -424,7 +428,7 @@ main {
   
       .pagination {
           margin: 2px 8px;
-          font-size: 0.6rem;
+          font-size: 0.5rem;
           font-weight: 900;
       }
       
